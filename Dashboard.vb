@@ -37,6 +37,38 @@
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Try
+            con.Open()
+            cmd.CommandText = "DELETE from tbl_login " _
+                      & "WHERE log_id = " & txtID.Text
 
+            cmd.Connection = con
+            cmd.ExecuteNonQuery()
+            con.Close()
+            RefreshSub()
+            MessageBox.Show("Data Delete", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        Try
+            con.Open()
+            cmd.CommandText = "UPDATE tbl_login SET log_username = '" & txtUsername.Text & "'," _
+                & "log_password = '" & txtPassword.Text & "'," _
+                & "log_fullname = '" & txtPassword.Text & "'" _
+                & "WHERE log_id = " & txtID.Text
+
+            cmd.Connection = con
+            cmd.ExecuteNonQuery()
+            con.Close()
+            RefreshSub()
+            MessageBox.Show("Data Update", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class
