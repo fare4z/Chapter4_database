@@ -13,8 +13,6 @@
         cmd.CommandText = "SELECT * FROM tbl_login where log_username ='" & Username & "' and " & "log_password = '" & Password & "'"
         cmd.Connection = con
 
-        MsgBox(cmd.CommandText)
-
         dataReader = cmd.ExecuteReader()
 
         If (dataReader.Read() = True) Then
