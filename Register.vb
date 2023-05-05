@@ -16,8 +16,9 @@
             MessageBox.Show("Success", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Me.Close()
         Catch ex As Exception
-            con.Close()
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            con.Close()
 
         End Try
 
